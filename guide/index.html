@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>指南 | smox-document</title>
+    <meta name="description" content="smox docs">
+    
+    
+    <link rel="preload" href="/assets/css/3.styles.ca93d274.css" as="style"><link rel="preload" href="/assets/js/app.c1a2996a.js" as="script"><link rel="preload" href="/assets/js/1.798de63f.js" as="script"><link rel="prefetch" href="/assets/js/0.623bd86b.js"><link rel="prefetch" href="/assets/js/2.6989ef97.js">
+    <link rel="stylesheet" href="/assets/css/3.styles.ca93d274.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      smox-document
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/quickstart/" class="nav-link">快速上手</a></div><div class="nav-item"><a href="/guide/" class="nav-link router-link-exact-active router-link-active">详细教程</a></div><div class="nav-item"><a href="https://github.com/132yse/smox" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/quickstart/" class="nav-link">快速上手</a></div><div class="nav-item"><a href="/guide/" class="nav-link router-link-exact-active router-link-active">详细教程</a></div><div class="nav-item"><a href="https://github.com/132yse/smox" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>指南</span><!----></p><ul class="sidebar-group-items"><li><a href="/guide/#指南" class="sidebar-link">指南</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/#model-机制" class="sidebar-link">Model 机制</a></li><li class="sidebar-sub-header"><a href="/guide/#中间件机制" class="sidebar-link">中间件机制</a></li><li class="sidebar-sub-header"><a href="/guide/#推荐目录结构" class="sidebar-link">推荐目录结构</a></li><li class="sidebar-sub-header"><a href="/guide/#produce-语法糖" class="sidebar-link">produce 语法糖</a></li></ul></li></ul></div></li></ul></div><div class="page"><div class="content"><h2 id="指南"><a href="#指南" aria-hidden="true" class="header-anchor">#</a> 指南</h2><h3 id="model-机制"><a href="#model-机制" aria-hidden="true" class="header-anchor">#</a> Model 机制</h3><p>smox 提供 model 机制，用于大型项目的拆分，相似的机制在同类工具中也存在，如 vuex 的 module、rematch/dva 的 model
+虽然相似，但 smox 却带来更好的 API ，以及更合理的细节体验</p><p>好啦，我们从一个变性的 demo 开始吧~</p><h4 id="建立-model"><a href="#建立-model" aria-hidden="true" class="header-anchor">#</a> 建立 model</h4><p>首先，一个 model 长这样：</p><div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> sex <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    sex<span class="token punctuation">:</span> <span class="token string">'boy'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">change</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      state<span class="token punctuation">.</span>sex <span class="token operator">=</span> payload
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">asyncChange</span><span class="token punctuation">(</span><span class="token punctuation">{</span> commit <span class="token punctuation">}</span><span class="token punctuation">,</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'change'</span><span class="token punctuation">,</span> payload<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>可以看到，我们只是在 <code>单model</code> 模式上，包了层对象，但是有了这层对象，就可以肆意的 export 啦
+是的，到这里，我们一个 model 已经搞定了，值得一提的是，不需要写命名空间，smox 内部已经做了处理
+但是与此同时，也存在一个约定，就是 actions 的 payload 将会是必传，因为内含 name</p><h4 id="创建-store"><a href="#创建-store" aria-hidden="true" class="header-anchor">#</a> 创建 store</h4><p>然后，创建 store:</p><div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span> modelA<span class="token punctuation">,</span> modelB<span class="token punctuation">,</span> …… <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>Provider store <span class="token operator">=</span> <span class="token punctuation">{</span>store<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>App <span class="token operator">/</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre></div><p>是的，你没有看错，同样是一个对象，还记得 单model 是这样的：</p><div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span> state<span class="token punctuation">,</span> mutations<span class="token punctuation">,</span> actions <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>同样的，smox 内部做了相应处理
+这里比同类工具都要先进，vuex 将 modules 作为第五个参数传递，多了一层 <code>root</code> 的概念，是 vuex 的痛点</p><p>这样一来，就完成了 model 的建立与注入，接下来就是组件内使用了</p><h4 id="组件内使用"><a href="#组件内使用" aria-hidden="true" class="header-anchor">#</a> 组件内使用</h4><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> map <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'smox'</span>
+
+@<span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'sex/sex'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  mutations<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'sex/change'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  actions<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'sex/asyncChange'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>现在是<span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>sex<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">change</span><span class="token punctuation">(</span><span class="token string">'girl'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>变性<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">change</span><span class="token punctuation">(</span><span class="token string">'girl'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>异步变性<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>是的，你没看错，就是这么简单，我们仍然用 map 语法糖，很方便的书写</p><p>其实和 rematch 一样，实现<code>dispatch('model/action')</code>非常简单，真正难的地方就在于封装 map (对应他们的 connect )</p><p>不得不说，同类工具，有了 model 机制，这个语法糖都会变得惨不忍睹</p><p>所以还是拥抱 smox 吧【泪奔】，复杂的事情我都搞定了</p><p>好啦，有了这个机制，我们就可以很方便的拆分目录结构啦！</p><p>同时也可以根据 API 进行拆分，所以两种方式结合，整个 React 应用可以拆的 片甲不留！</p><h4 id="p-s"><a href="#p-s" aria-hidden="true" class="header-anchor">#</a> P.S.</h4><p>model 仅仅是便于开发中拆分，smox 本身仍是单 store，拆分只是将业务逻辑拆开，所以仍然要利用好 <code>@map</code> 来按需加载</p><p>另外，smox 并不建议 滥用 model，大部分项目只需要 单model，而大型项目，大多数碰不到，所以 model 只是作为 优秀的机制 而存在</p><p>用不用具体场景具体分析哈！</p><h3 id="中间件机制"><a href="#中间件机制" aria-hidden="true" class="header-anchor">#</a> 中间件机制</h3><p>smox 提供中间件机制，可以愉快的定制中间件，smox 的中间件和 redux 的神似，一个中间件长这样：</p><div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">logger</span> <span class="token operator">=</span> <span class="token punctuation">(</span>store<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>next<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>mutation<span class="token punctuation">,</span>payload<span class="token punctuation">)</span> <span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token string">'before'</span><span class="token punctuation">,</span>store<span class="token punctuation">.</span>state<span class="token punctuation">)</span>
+  <span class="token function">next</span><span class="token punctuation">(</span>mutation<span class="token punctuation">,</span>payload<span class="token punctuation">)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'after'</span><span class="token punctuation">,</span> store<span class="token punctuation">.</span>state<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">groupEnd</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>使用的时候作为第二个参数传入，是个数组</p><div class="language-JavaScript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span> state<span class="token punctuation">,</span> mutations<span class="token punctuation">,</span> actions <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">[</span>logger<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><p>需要注意的是，开发 smox 中间件需要知道，mutation 和 action 都不再是一个<code>{type: xxx}</code>的对象，而是字符串或函数</p><h3 id="推荐目录结构"><a href="#推荐目录结构" aria-hidden="true" class="header-anchor">#</a> 推荐目录结构</h3><p>我们都知道 redux 中拆分 reducer、action，是不太好搞的，需要 combineReducers 来合并
+但是 smox 可以不用，因为 smox 对应的都是对象，所以我们直接 <code>export default {}</code>即可</p><p>smox 平时提倡 <code>单model</code>，但也确实存在 <code>多model</code>，因此目录拆分可能存在多种，大概可有以下两种：</p><h4 id="单model"><a href="#单model" aria-hidden="true" class="header-anchor">#</a> 单model</h4><p>因为是一个 model，也就是没有 model，所以直接根据语法糖拆分即可</p><div class="language-shell extra-class"><pre class="language-text"><code>├── index.js                #入口文件
+├── components              #业务组件
+│   ├── App.js 
+│   └── ...
+└── store
+    ├── index.js            # 创建并导出 store 的地方
+    ├── state.js            # state
+    ├── mutations.js        # mutation
+    └── actions.js          # actions
+</code></pre></div><h4 id="多model"><a href="#多model" aria-hidden="true" class="header-anchor">#</a> 多model</h4><p>多个 model 就可以文件夹是 model 名，内容是是根据语法糖的拆分</p><div class="language-shell extra-class"><pre class="language-text"><code>├── index.js                            #入口文件
+├── components                          #业务组件
+│   ├── App.js 
+│   └── ...
+└── store ├── modelA                    # model 作为文件夹名
+          |     ├── index.js            # 创建并导出 model 的地方
+                ├── state.js            # state
+          |     ├── mutations.js        # mutation
+          |     └── actions.js          # actions
+          └── modelB ...
+</code></pre></div><h3 id="produce-语法糖"><a href="#produce-语法糖" aria-hidden="true" class="header-anchor">#</a> produce 语法糖</h3><p>smox 对外暴露一个 produce 的 API，用于外部的性能优化
+它的作用是，使得一个对象变成可劫持的对象，这个思路来自 immer，也类似于 vue 的 proxy 函数</p><p>比如 setState 的时候：</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>
+        <span class="token function">produce</span><span class="token punctuation">(</span>state <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            state<span class="token punctuation">.</span>count <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+</code></pre></div></div><div class="page-edit"><!----><!----></div><!----></div></div></div>
+    <script src="/assets/js/1.798de63f.js" defer></script><script src="/assets/js/app.c1a2996a.js" defer></script>
+  </body>
+</html>
